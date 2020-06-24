@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
 
@@ -20,81 +20,85 @@ const Delete = styled.div`
     cursor: pointer;
 `
 
-class UpdateMovie extends Component {
-    updateUser = event => {
+const UpdateRecipe = (props) => {
+
+    const updateRecipe = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/recipes/update/${props.id}`
     }
 
-    render() {
-        return <Update onClick={this.updateUser}>Update</Update>
-    }
+    
+    return <Update onClick={updateRecipe}>Update</Update>
+    
 }
 
-class DeleteMovie extends Component {
-    deleteUser = event => {
+const DeleteRecipe = (props) => {
+
+    const deleteRecipe = event => {
         event.preventDefault()
 
         if (
             window.confirm(
-                `Do tou want to delete the movie ${this.props.id} permanently?`,
+                `Do you want to delete the recipe ${props.name} permanently?`,
             )
         ) {
-            api.deleteMovieById(this.props.id)
+            api.deleteRecipeById(props.id)
             window.location.reload()
         }
     }
 
-    render() {
-        return <Delete onClick={this.deleteUser}>Delete</Delete>
-    }
+    return <Delete onClick={deleteRecipe}>Delete</Delete>
+    
 }
 
-class MoviesList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            movies: [],
-            columns: [],
-            isLoading: false,
-        }
-    }
+const RecipesList = (props) => {
+    
+    const [recipe, setRecipe] = useState({
+        recipes: [],
+        columns: [],
+        isLoading: false,
+    });
 
-    componentDidMount = async () => {
-        this.setState({ isLoading: true })
+    const componentDidMount = async () => {
+        setRecipe({ isLoading: true })
 
-        await api.getAllMovies().then(movies => {
-            this.setState({
-                movies: movies.data.data,
+        await api.getAllRecipes().then(recipes => {
+            setRecipe({
+                recipes: recipes.data.data,
                 isLoading: false,
             })
         })
     }
 
-    render() {
-        const { movies, isLoading } = this.state
+    useEffect(() => {
+        componentDidMount();
+       }, []);
+
+       
+
+        const { recipes, isLoading } = recipe;
 
         const columns = [
-            {
-                Header: 'ID',
-                accessor: '_id',
-                filterable: true,
-            },
             {
                 Header: 'Name',
                 accessor: 'name',
                 filterable: true,
             },
             {
-                Header: 'Rating',
-                accessor: 'rating',
-                filterable: true,
+                Header: 'Ingredients',
+                accessor: 'ingredients',
+                Cell: props => <span>{props.value.join(' | ')}</span>,
             },
             {
-                Header: 'Time',
-                accessor: 'time',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                Header: 'Directions',
+                accessor: 'directions',
+                Cell: props => <span>{props.value.join(' | ')}</span>,
+            },
+            {
+                Header: 'Link',
+                accessor: 'link',
+                filterable: false
             },
             {
                 Header: '',
@@ -102,7 +106,7 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteMovie id={props.original._id} />
+                            <DeleteRecipe id={props.original._id} name={props.original.name} />
                         </span>
                     )
                 },
@@ -113,7 +117,7 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateMovie id={props.original._id} />
+                            <UpdateRecipe id={props.original._id} name={props.original.name}/>
                         </span>
                     )
                 },
@@ -121,15 +125,15 @@ class MoviesList extends Component {
         ]
 
         let showTable = true
-        if (!movies.length) {
-            showTable = false
-        }
+        // if (!recipes.length) {
+        //     showTable = false
+        // }
 
         return (
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={movies}
+                        data={recipes}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}
@@ -139,7 +143,7 @@ class MoviesList extends Component {
                 )}
             </Wrapper>
         )
-    }
+    
 }
 
-export default MoviesList
+export default RecipesList
