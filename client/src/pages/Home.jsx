@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
+import Header from '../components/Header';
 import Search from '../components/Search';
-// import Modal from 'react-bootstrap/Modal';
-// import Button from 'react-bootstrap/Button';
+
 
 function Home() {
 
@@ -33,7 +33,10 @@ function Home() {
     }
 
     return (
-        <Search recipes={recipes} name={name} isLoading={isLoading} id={id}/>
+        <div>
+            <Header />
+            <Search recipes={recipes} name={name} isLoading={isLoading} id={id}/>
+        </div>
         )
 
 }

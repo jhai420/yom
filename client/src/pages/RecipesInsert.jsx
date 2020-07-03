@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import api from '../api'
+import React, { useState } from 'react';
+import api from '../api';
 
 import styled from 'styled-components'
 
@@ -36,7 +36,7 @@ const Button = styled.button.attrs({
 `
 
 const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
+    className: `btn`,
 })`
     margin: 15px 15px 15px 5px;
 `
@@ -75,6 +75,7 @@ const RecipesInsert = () => {
                 directions: '',
                 link: '',
             })
+            window.location.href = `/`;
         })
     }
 
@@ -90,7 +91,7 @@ const RecipesInsert = () => {
                     onChange={handleChange}
                 />
 
-                <Label>Ingredients: </Label>
+                <Label>Ingredients (separated by |):</Label>
                 <TextArea
                     type="text"
                     rows="2"
@@ -99,7 +100,7 @@ const RecipesInsert = () => {
                     onChange={handleChange}
                 />
 
-                <Label>Directions: </Label>
+                <Label>Directions (separated by |): </Label>
                 <TextArea
                     type="text"
                     rows="5"
@@ -108,7 +109,7 @@ const RecipesInsert = () => {
                     onChange={handleChange}
                 />
 
-                <Label>Link: </Label>
+                <Label>Image URL: </Label>
                 <InputText
                     type="text"
                     name="link"
@@ -116,8 +117,8 @@ const RecipesInsert = () => {
                     onChange={handleChange}
                 />
 
-                <Button onClick={handleIncludeRecipe}>Add Recipe</Button>
-                <CancelButton href={'/recipes/list'}>Cancel</CancelButton>
+                <Button variant="light" onClick={handleIncludeRecipe}>Add Recipe</Button>
+                <CancelButton href={'/'}>Cancel</CancelButton>
             </Wrapper>
         )
     

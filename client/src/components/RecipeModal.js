@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-//import styled from 'styled-components';
-
 
 function RecipeModal(props) {
 
@@ -11,22 +9,29 @@ function RecipeModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
-
   const updateRecipe = event => {
       event.preventDefault()
 
       window.location.href = `/recipes/update/${props.id}`
-  }
+  };
 
-  const directionsList = props.directions
-  const ingredientsList = props.ingredients
+
+  const removeClass = () => {
+    const buttonsArray = document.querySelectorAll('.btn-primary');
+    buttonsArray.forEach(node => {
+      node.classList.remove('btn-primary');
+    });
+  };
 
   return(
 
     <>
-    <Button className="btn-note" onClick={handleShow}>
-            {props.name}
+    <Button className="btn-note" onLoad={removeClass} onClick={handleShow}>
+    <figure>
+      <img src={props.link} alt={props.title}/>
+      </figure>
+      <div className="background"></div>
+    <div className="recipe-title">{props.name}</div>
     </Button>
     <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -35,16 +40,15 @@ function RecipeModal(props) {
         <Modal.Body>
         <h3>Ingredients:</h3>
         <ul>
-          {ingredientsList.map((ingredient) => 
-          (<li>{ingredient}</li>))}
+          {props.ingredients.map((ingredient, index) => 
+          (<li key={index}>{ingredient}</li>))}
         </ul>
        
         <h3>Directions:</h3>
         <ol>
-          {directionsList.map((direction) => 
-          (<li>{direction}</li>))}
+          {props.directions.map((direction, index) => 
+          (<li key={index}>{direction}</li>))}
         </ol>
-        <a target="blank" href={props.link}>Link</a>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="light" onClick={handleClose}>

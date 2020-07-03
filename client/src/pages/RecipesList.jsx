@@ -15,10 +15,10 @@ const Update = styled.div`
     cursor: pointer;
 `
 
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`
+// const Delete = styled.div`
+//     color: #ff0000;
+//     cursor: pointer;
+// `
 
 const UpdateRecipe = (props) => {
 
@@ -33,24 +33,25 @@ const UpdateRecipe = (props) => {
     
 }
 
-const DeleteRecipe = (props) => {
+// DELETE RECIPE 
+// const DeleteRecipe = (props) => {
 
-    const deleteRecipe = event => {
-        event.preventDefault()
+//     const deleteRecipe = event => {
+//         event.preventDefault()
 
-        if (
-            window.confirm(
-                `Do you want to delete the recipe ${props.name} permanently?`,
-            )
-        ) {
-            api.deleteRecipeById(props.id)
-            window.location.reload()
-        }
-    }
+//         if (
+//             window.confirm(
+//                 `Do you want to delete the recipe ${props.name} permanently?`,
+//             )
+//         ) {
+//             api.deleteRecipeById(props.id)
+//             window.location.reload()
+//         }
+//     }
 
-    return <Delete onClick={deleteRecipe}>Delete</Delete>
+//     return <Delete onClick={deleteRecipe}>Delete</Delete>
     
-}
+// }
 
 const RecipesList = (props) => {
     
@@ -94,22 +95,6 @@ const RecipesList = (props) => {
                 Header: 'Directions',
                 accessor: 'directions',
                 Cell: props => <span>{props.value.join(' | ')}</span>,
-            },
-            {
-                Header: 'Link',
-                accessor: 'link',
-                filterable: false
-            },
-            {
-                Header: '',
-                accessor: '',
-                Cell: function(props) {
-                    return (
-                        <span>
-                            <DeleteRecipe id={props.original._id} name={props.original.name} />
-                        </span>
-                    )
-                },
             },
             {
                 Header: '',

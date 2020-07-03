@@ -35,7 +35,7 @@ const Button = styled.button.attrs({
 `
 
 const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
+    className: `btn`,
 })`
     margin: 15px 15px 15px 5px;
 `
@@ -76,25 +76,24 @@ const RecipesUpdate = (props) => {
                 directions: '',
                 link: ''
             });
-            window.location.href = `/recipes/list`;
-        })
-    }
-
-    const loadRecipeData = async () => {
-        const id  = props.match.params.id;
-        const recipeData = await api.getRecipeById(id)
-
-        setRecipe({
-            name: recipeData.data.data.name,
-            ingredients: recipeData.data.data.ingredients.join('|'),
-            directions: recipeData.data.data.directions.join('|'),
-            link: recipeData.data.data.link
+            window.location.href = `/`;
         })
     }
 
     useEffect(() => {
+        const loadRecipeData = async () => {
+            const id  = props.match.params.id;
+            const recipeData = await api.getRecipeById(id)
+    
+            setRecipe({
+                name: recipeData.data.data.name,
+                ingredients: recipeData.data.data.ingredients.join('|'),
+                directions: recipeData.data.data.directions.join('|'),
+                link: recipeData.data.data.link
+            })
+        };
         loadRecipeData();
-       }, []);
+       },[props.match.params.id]);
 
         return (
             <Wrapper>
@@ -108,7 +107,7 @@ const RecipesUpdate = (props) => {
                     onChange={handleChange}
                 />
 
-                <Label>Ingredients: </Label>
+                <Label>Ingredients (separated by |): </Label>
                 <TextArea
                     type="text"
                     name="ingredients"
@@ -117,7 +116,7 @@ const RecipesUpdate = (props) => {
                     onChange={handleChange}
                 />
 
-                <Label>Directions: </Label>
+                <Label>Directions (separated by |): </Label>
                 <TextArea
                     type="text"
                     name="directions"
@@ -126,7 +125,7 @@ const RecipesUpdate = (props) => {
                     onChange={handleChange}
                 />
 
-                <Label>Link: </Label>
+                <Label>Image URL: </Label>
                 <InputText
                     type="text"
                     name="link"
@@ -135,7 +134,7 @@ const RecipesUpdate = (props) => {
                 />
 
                 <Button onClick={handleUpdateRecipe}>Update Recipe</Button>
-                <CancelButton href={'/recipes/list'}>Cancel</CancelButton>
+                <CancelButton href={'/'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

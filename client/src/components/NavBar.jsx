@@ -1,30 +1,26 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-
-import Logo from './Logo'
-import Links from './Links'
-
-const Container = styled.div.attrs({
-    className: 'container',
-})`
-    height: 100px;
-`
-
-const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg',
-})`
-    margin-bottom: 20 px;
-`
+import React, { Component } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 class NavBar extends Component {
     render() {
         return (
-            <Container>
-                <Nav>
-                    <Logo />
-                    <Links />
+
+        <>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar.Brand className="logo hidden-logo" href="/">YOM.</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mx-auto">
+                    <Nav.Link href="/">HOME</Nav.Link>
+                    <Nav.Link href="/recipes/list">RECIPES LIST</Nav.Link>
+                    <Nav.Link className="logo show-logo" href="/">YOM.</Nav.Link>
+                    <Nav.Link href="/recipes/create">ADD RECIPE</Nav.Link>
+                    <Nav.Link href="/contact">CONTACT</Nav.Link>
                 </Nav>
-            </Container>
+            </Navbar.Collapse>
+            </Navbar>
+        </>
         )
     }
 }

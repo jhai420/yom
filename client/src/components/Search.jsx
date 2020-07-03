@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
-import Recipe from "../components/Recipe";
 import RecipeModal from "../components/RecipeModal";
-import { MDBCol, MDBIcon } from "mdbreact";
+import { MDBCol } from "mdbreact";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 function Search (props) {
@@ -20,8 +22,7 @@ function Search (props) {
             const lc = item.name.toLowerCase();
             const filter = event.target.value.toLowerCase();
             return lc.includes(filter);
-        })
-        console.log('newList:', newList)
+        });
     } else {
         newList = props.recipes
     }
@@ -36,24 +37,29 @@ function Search (props) {
     if (!filtered || filtered.length === 0) {
         var isLoading = true;
     };
-   
-
 
     return (
     <div>
-        <div className="d-flex justify-content-center search-bar">
-        <MDBCol md="6">
-      <form className="form-inline mt-4 mb-4">
-        <MDBIcon icon="search" />
-        <input className="input form-control form-control-sm ml-3 w-75" type="text" onChange={handleSearch} placeholder="Search" aria-label="Search" />
-      </form>
-    </MDBCol>
-    </div>
-        
-        {!isLoading && filtered.map((recipe) => (
-        <RecipeModal key={recipe._id} id={recipe._id} name={recipe.name} ingredients={recipe.ingredients} directions={recipe.directions} link={recipe.link}/>
-        ))} 
-        
+        <div className="find-recipe d-flex justify-content-center">
+            <MDBCol md="6">
+            <h1 className="recipe">Find a recipe</h1>
+            <div className="form-group position-relative">
+                <input className="form-control input-bg" type="text" onChange={handleSearch} placeholder="Search..." aria-label="Search" />
+                <i className="fa fa-search fa-lg position-absolute"></i>
+            </div>
+            </MDBCol>
+        </div>
+        <Container>
+            <Row className="justify-content-center text-center">
+            <Col className="hidden-column"></Col>
+            <Col xs={8} className="mx-auto">
+                {!isLoading && filtered.map((recipe) => (
+                <RecipeModal key={recipe._id} id={recipe._id} name={recipe.name} ingredients={recipe.ingredients} directions={recipe.directions} link={recipe.link}/>
+                ))} 
+            </Col>
+            <Col className="hidden-column"></Col>
+            </Row>
+        </Container>
     </div>
     )
         

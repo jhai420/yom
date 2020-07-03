@@ -1,5 +1,5 @@
-import Links from './Links'
-import Logo from './Logo'
 import NavBar from './NavBar'
+import Header from './Header'
+import Footer from './Footer'
 
-export { Links, Logo, NavBar }
+export { NavBar, Header, Footer}

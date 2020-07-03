@@ -1,21 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 
-import { NavBar } from '../components';
-import { RecipesList, RecipesInsert, RecipesUpdate, Home} from '../pages';
+
+import { NavBar, Footer } from '../components';
+import { RecipesList, RecipesInsert, RecipesUpdate, Home, Contact} from '../pages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-
 function App() {
     return (
-        
+        <>
         <Router>
             <NavBar />
+            
             <Switch>
-            <div className="main">
                 <Route path="/" exact component ={Home} />
+                <Container>
+                <div className="main">
                 <Route path="/recipes/list" exact component={RecipesList} />
                 <Route path="/recipes/create" exact component={RecipesInsert} />
                 <Route
@@ -23,9 +26,15 @@ function App() {
                     exact
                     component={RecipesUpdate}
                 />
+                <Route path="/contact" exact component={Contact} />
                 </div>
+                </Container>
             </Switch>
         </Router>
+        <Footer />
+        </>
+
+
             
         
     )
