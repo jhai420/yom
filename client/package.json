@@ -29,7 +29,6 @@
     "eslintConfig": {
         "extends": "react-app"
     },
-    
     "browserslist": {
         "production": [
             ">0.2%",
@@ -41,5 +40,13 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@babel/core": "^7.10.4",
+        "@babel/preset-env": "^7.10.4",
+        "@babel/preset-react": "^7.10.4",
+        "babel-loader": "^8.1.0",
+        "file-loader": "^6.0.0",
+        "url-loader": "^4.1.0"
     }
 }
