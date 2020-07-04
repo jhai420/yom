@@ -28,7 +28,7 @@ function RecipeModal(props) {
     <>
     <Button className="btn-note" onLoad={removeClass} onClick={handleShow}>
     <figure>
-      <img src={props.link} alt={props.title}/>
+      <img src={require(`../images/${props.link}.jpg`)} alt={props.name}/>
       </figure>
       <div className="background"></div>
     <div className="recipe-title">{props.name}</div>
