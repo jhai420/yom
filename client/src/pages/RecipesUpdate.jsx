@@ -47,7 +47,8 @@ const RecipesUpdate = (props) => {
         name: '',
         ingredients: '',
         directions: '',
-        link: ''
+        link: '',
+        tags: ''
     });
 
     const handleChange = async event => {
@@ -62,11 +63,11 @@ const RecipesUpdate = (props) => {
     }
 
     const handleUpdateRecipe = async () => {
-        const { name, ingredients, directions, link } = recipe;
+        const { name, ingredients, directions, link, tags } = recipe;
         const id = props.match.params.id;
         const arrayIngredients = ingredients.split('|');
         const arrayDirections = directions.split('|');
-        const payload = { name, ingredients: arrayIngredients, directions: arrayDirections, link };
+        const payload = { name, ingredients: arrayIngredients, directions: arrayDirections, link, tags };
 
         await api.updateRecipeById(id, payload).then(res => {
             window.alert(`Recipe updated successfully`);
@@ -74,7 +75,8 @@ const RecipesUpdate = (props) => {
                 name: '',
                 ingredients: '',
                 directions: '',
-                link: ''
+                link: '',
+                tags: ''
             });
             window.location.href = `/`;
         })
@@ -89,7 +91,8 @@ const RecipesUpdate = (props) => {
                 name: recipeData.data.data.name,
                 ingredients: recipeData.data.data.ingredients.join('|'),
                 directions: recipeData.data.data.directions.join('|'),
-                link: recipeData.data.data.link
+                link: recipeData.data.data.link,
+                tags: recipeData.data.data.tags
             })
         };
         loadRecipeData();
@@ -130,6 +133,14 @@ const RecipesUpdate = (props) => {
                     type="text"
                     name="link"
                     value={recipe.link}
+                    onChange={handleChange}
+                />
+
+                <Label>Tags (separated by a space): </Label>
+                <InputText
+                    type="text"
+                    name="tags"
+                    value={recipe.tags}
                     onChange={handleChange}
                 />
 

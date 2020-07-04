@@ -47,6 +47,7 @@ const RecipesInsert = () => {
         ingredients: '',
         directions: '',
         link: '',
+        tags:''
      });
     
 
@@ -62,10 +63,10 @@ const RecipesInsert = () => {
     }
 
     const handleIncludeRecipe = async () => {
-        const { name, ingredients, directions, link } = recipe;
+        const { name, ingredients, directions, link, tags} = recipe;
         const arrayIngredients = ingredients.split('|');
         const arrayDirections = directions.split('|');
-        const payload = { name, ingredients: arrayIngredients, directions: arrayDirections, link };
+        const payload = { name, ingredients: arrayIngredients, directions: arrayDirections, link, tags };
 
         await api.insertRecipe(payload).then(res => {
             window.alert(`Recipe successfully added`)
@@ -74,6 +75,7 @@ const RecipesInsert = () => {
                 ingredients: '',
                 directions: '',
                 link: '',
+                tags:''
             })
             window.location.href = `/`;
         })
@@ -116,6 +118,14 @@ const RecipesInsert = () => {
                     value={recipe.link}
                     onChange={handleChange}
                 />
+
+                <Label>Tags (separated by a space): </Label>
+                <InputText
+                    type="text"
+                    name="tags"
+                    value={recipe.tags}
+                    onChange={handleChange}
+                />  
 
                 <Button variant="light" onClick={handleIncludeRecipe}>Add Recipe</Button>
                 <CancelButton href={'/'}>Cancel</CancelButton>

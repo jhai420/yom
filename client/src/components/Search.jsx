@@ -19,7 +19,7 @@ function Search (props) {
         currentList = props.recipes
 
         newList = currentList.filter(item => {
-            const lc = item.name.toLowerCase();
+            const lc = item.tags.toLowerCase();
             const filter = event.target.value.toLowerCase();
             return lc.includes(filter);
         });
@@ -53,7 +53,7 @@ function Search (props) {
             <Row className="justify-content-center text-center">
             <Col xs={8} className="mx-auto">
                 {!isLoading && filtered.map((recipe) => (
-                <RecipeModal key={recipe._id} id={recipe._id} name={recipe.name} ingredients={recipe.ingredients} directions={recipe.directions} link={recipe.link}/>
+                <RecipeModal key={recipe._id} id={recipe._id} name={recipe.name} ingredients={recipe.ingredients} directions={recipe.directions} link={recipe.link} tags={recipe.tags}/>
                 ))} 
             </Col>
             </Row>

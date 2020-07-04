@@ -5,7 +5,8 @@ createRecipe = (req, res) => {
         name: req.body.name,
         ingredients: req.body.ingredients,
         directions: req.body.directions,
-        link: req.body.link
+        link: req.body.link,
+        tags: req.body.tags
     }
 
     if (!body) {
@@ -59,6 +60,7 @@ updateRecipe = async (req, res) => {
         recipe.ingredients = body.ingredients
         recipe.directions = body.directions
         recipe.link = body.link
+        recipe.tags = body.tags
         recipe
             .save()
             .then(() => {

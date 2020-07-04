@@ -6,7 +6,8 @@ const Recipe = new Schema(
         name: { type: String, required: true },
         ingredients: { type: [String], required: true },
         directions: { type: [String], required: true },
-        link: {type: String, required: true}
+        link: {type: String, required: true},
+        tags: { type: String, required: true }
     },
     { timestamps: true },
 )
