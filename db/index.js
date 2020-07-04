@@ -1,7 +1,10 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+const db = process.env.MONGODB_URL;
 
 mongoose
-    .connect('mongodb+srv://admin-jenny:158548@recipes.bpbga.mongodb.net/YomDB', { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })
