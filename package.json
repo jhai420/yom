@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+	"scripts": {
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd cliend && npm start"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.7.5"
+  },
+  "proxy": "http://localhost:4000"
+}

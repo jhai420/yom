@@ -1,9 +1,12 @@
-const express = require('express')
+const express = require('express');
 
-const RecipeCtrl = require('../controllers/recipe-ctrl')
+const RecipeCtrl = require('../controllers/recipe-ctrl');
 
-const router = express.Router()
+const router = express.Router();
 
+const path = require('path');
+
+// API routes
 router.post('/recipe', RecipeCtrl.createRecipe)
 router.put('/recipe/:id', RecipeCtrl.updateRecipe)
 router.delete('/recipe/:id', RecipeCtrl.deleteRecipe)
