@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'http://localhost:4000/api',
+    baseURL:'https://yom-recipes.herokuapp.com/api',
 })
 
 export const insertRecipe = payload => api.post(`/recipe`, payload)
