@@ -40,8 +40,8 @@ function Search (props) {
 
     return (
     <div>
-        <div className="find-recipe d-flex justify-content-center">
-            <MDBCol md="6">
+        <div className="find-recipe justify-content-center">
+            <MDBCol>
             <h1 className="recipe">Find a recipe</h1>
             <div className="form-group position-relative">
                 <input className="form-control input-bg" type="text" onChange={handleSearch} placeholder="Search..." aria-label="Search" />
@@ -51,13 +51,11 @@ function Search (props) {
         </div>
         <Container>
             <Row className="justify-content-center text-center">
-            <Col className="hidden-column"></Col>
             <Col xs={8} className="mx-auto">
                 {!isLoading && filtered.map((recipe) => (
                 <RecipeModal key={recipe._id} id={recipe._id} name={recipe.name} ingredients={recipe.ingredients} directions={recipe.directions} link={recipe.link}/>
                 ))} 
             </Col>
-            <Col className="hidden-column"></Col>
             </Row>
         </Container>
     </div>

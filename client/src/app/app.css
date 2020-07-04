@@ -55,12 +55,19 @@ h3 {
   position: absolute;
   z-index: -10;
   width: 100%;
+  overflow: hidden;
 }
 
 .find-recipe {
-  padding: 120px;
+  padding: 120px 15px;
   text-align: center;
   margin-bottom: 80px;
+}
+
+.recipe {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1.recipe {
@@ -72,10 +79,13 @@ h1.recipe {
 
 .fa {
   top: 20px;
-  right: 7rem;
+  right: 18.5%;
 }
 
 .form-group {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30px;
 }
 
@@ -86,11 +96,10 @@ h1.recipe {
   font-style: normal;
 }
 
-
 /* Search Bar */
 
 .input-bg {
-  width: 75%;
+  width: 65%;
   height: 3.75rem;
   margin-left: auto;
   margin-right: auto;
@@ -217,17 +226,15 @@ figure{
 
 /* RESPONSIVE CSS */
 
-@media (max-width: 768px) {
-  .fa {
-    visibility: hidden;
-  }
-}
-
 @media (max-width: 1400px) {
-  .recipe {
+  /*.recipe {
     background-color: white;
-    opacity: 60%;
+    opacity: 0.6;
     border-radius: 10px;
+  }*/
+  .header-bg img{
+    position: relative;;
+    right: 40%;
   }
 }
 
@@ -243,12 +250,18 @@ figure{
   }
 }
 
+/* MEDIUM-SIZED SCREENS */
+
 @media (max-width: 845px) {
   button.btn-note {
     width: 180px;
     height: 180px;
     margin-right: 50px;
     margin-bottom: 50px;
+}
+
+.main {
+  width: 90%;
 }
 
 .btn-note img {
@@ -277,6 +290,55 @@ figure{
 }
 .find-recipe {
   margin-bottom: 0px;
+}
+
+}
+
+/* PHONE SCREENS */
+
+@media (max-width: 450px) {
+
+.recipe {
+    width: 100%;
+  }
+
+.input-bg {
+  width: 100%;
+}
+
+.header-bg img{
+  position: relative;;
+  right: 300%;
+}
+
+button.btn-note {
+  width: 170px;
+  height: 170px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-note img {
+  top:-5px;
+  width: 170px;
+}
+
+
+.recipe-title {
+  font-size: 0.8rem;
+}
+
+figure{  
+  width:170px;
+  margin:0;  
+}
+
+
+.col-8 {
+  max-width: 100%;
+  margin: 0;
+  flex: 0 0 100%;
+  padding-left: 15px;
 }
 
 }

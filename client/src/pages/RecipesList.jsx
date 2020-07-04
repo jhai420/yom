@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import 'react-table/react-table.css'
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 0 20px 40px 20px;
 `
 
 const Update = styled.div`
@@ -121,7 +121,7 @@ const RecipesList = (props) => {
                         data={recipes}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />
