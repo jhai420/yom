@@ -11,7 +11,7 @@ MERN application to share and store your favorite recipes.
 ## Installation
 1. Fork the repo
 2. Clone the repo
-```git clone https://github.com/your_username_/BanQ.git```
+```git clone https://github.com/your_username_/yom.git```
 3. Install NPM packages and start program
 ```
 npm install
